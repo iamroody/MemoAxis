@@ -15,19 +15,19 @@ function check_brew {
 	which brew || ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
 }
 
-function check_node{
+function check_node {
 	which node || brew install node
 }
 
-function check_mogodb{
-	which mongodb || brew install mongodb
+function check_mongodb {
+	which mongod || brew install mongodb
 }
 
-function check_express{
+function check_express {
 	which express || npm install -g express
 }
 
-function check_gems{
+function check_gems {
 	bundle update 
 	bundle install
 }
