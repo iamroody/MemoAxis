@@ -1,12 +1,22 @@
 require 'cucumber'
 require 'cucumber/rake/task'
 
+PROJECT_ROOT = File.dirname(__FILE__)
+
 namespace :test do
 
   Cucumber::Rake::Task.new(:cucumber) do |t|
     t.cucumber_opts = ["--wip", "features"]
   end
 
+end
+
+namespace :api do
+  task :run => "db:load_fixture" do
+    Dir.chdir "#{PROJECT_ROOT}/api" do
+      exec("node app.js")
+    end
+  end
 end
 
 namespace :db do
