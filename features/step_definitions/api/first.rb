@@ -1,8 +1,5 @@
-require "hashie"
-
 Given /^database has one feed$/ do |table|
-  feed = Hashie::Mash.new(table.rows_hash)
-  Database.feed feed
+  Database.feed table.hashes
 end
 
 When /^I visit the api$/ do
