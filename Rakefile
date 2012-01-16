@@ -22,13 +22,19 @@ end
 
 def start_app
   Dir.chdir "#{PROJECT_ROOT}/api" do
-    exec("node app.js")
+    exec "node app.js"
   end
 end
 
 namespace :api do
+  task :install_dependency do
+    Dir.chdir "#{PROJECT_ROOT}/api" do
+      system "npm install -d"
+    end
+  end
+
   desc "start the api local server with fake fixture data"
-  task :run => "db:load_fixture" do
+  task :run => ["db:load_fixture", :install_dependency] do
     start_app
   end
 end
