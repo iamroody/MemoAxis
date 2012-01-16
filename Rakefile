@@ -7,11 +7,7 @@ namespace :test do
 
   desc "run the automatic acceptance tests"
   task :acceptance do
-    app_pid = fork {
-      start_app
-    }
     Rake::Task['test:cucumber'].execute
-    Process.kill "HUP", app_pid
   end
 
   Cucumber::Rake::Task.new(:cucumber) do |t|
