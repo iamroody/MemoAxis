@@ -6,9 +6,16 @@ PROJECT_ROOT = File.dirname(__FILE__)
 namespace :test do
 
   desc "run the automatic acceptance tests"
-  task :acceptance do
-    Rake::Task['test:cucumber'].execute
-  end
+   task :acceptance do
+     app_pid = fork {
+       start_app
+     }
+     begin
+       Rake::Task['test:cucumber'].execute
+     ensure
+       Process.kill "HUP", app_pid
+     end
+   end
 
   Cucumber::Rake::Task.new(:cucumber) do |t|
     t.cucumber_opts = ["--wip", "features"]
