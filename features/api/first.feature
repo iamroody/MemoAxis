@@ -6,7 +6,7 @@ Feature:
   @wip
   Scenario: Make sure api infrastructure work
     Given database has one feed
-      | type    | content    |
-      | weibo   | test weibo |
+      | type    | content    | id       | title       |  key_words |
+      | weibo   | test weibo | weibo id | weibo title |  key words |
     When I visit the api
     Then I can get the feed

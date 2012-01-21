@@ -49,9 +49,15 @@ namespace :db do
 
   desc "load fixture to database"
   task :load_fixture => :clean do
-    doc = [{"type" => "weibo", "content" => "first one"},
-           {"type" => "weibo", "content" => "second one"},
-           {"type" => "weibo", "content" => "third one"}];
+    doc = [{"type" => "weibo", "content" => "first one", 
+            "id" => "1", "title"=>"weibo title1", 
+            "key words" =>"key words1"},
+           {"type" => "weibo", "content" => "second one",
+            "id" => "2", "title"=>"weibo title2", 
+            "key words" =>"key words2"},
+           {"type" => "weibo", "content" => "third one", 
+            "id" => "3", "title"=>"weibo title3", 
+            "key words" =>"key words3"}];
     feeds.insert doc
   end
 
